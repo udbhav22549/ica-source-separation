@@ -1,3 +1,4 @@
+from importlib import reload
 import pdb,os,time
 import numpy as np
 from math import log,log10
@@ -8,10 +9,11 @@ from numpy.random import rand
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from mpl_toolkits.mplot3d import axes3d
-import complex_FastICA as cica
-#reload(cica)
+from complex_FastICA import complex_FastICA
+# reload(complex_FastICA)
 
-plt.ion()
+#commented this so that the output doesnt snaps
+# plt.ion()
 
 
 m = 50000
@@ -84,7 +86,7 @@ X = A.dot(S)
 #print(type(X[0]))
 alg = 'deflation'#'parallel'
 
-K,W,Shat,EG = cica.complex_FastICA(X,max_iter=40,algorithm=alg,n_components=n)
+K,W,Shat,EG = complex_FastICA(X,max_iter=40,algorithm=alg,n_components=n)
 print(K.shape, W.shape, Shat.shape, EG.shape)
 #print(EG)
 
@@ -127,7 +129,3 @@ ax3.set_ylabel('Angle')
 ax3.set_xlabel('Time (a.u.)')
 
 plt.show()
-
-
-
-
